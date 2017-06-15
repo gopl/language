@@ -1,31 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"sync"
+	"time"
 )
 
 func main() {
-	const (
-		R = 1000
-		W = 3
-	)
-	wg := sync.WaitGroup{}
-	m := map[int]int{}
+	m := make(map[string]int)
 
-	wg.Add(R + W)
-	for i := 0; i < R; i++ {
-		go func() {
-			fmt.Println(m)
-			wg.Done()
-		}()
-	}
-	for i := 0; i < W; i++ {
-		go func() {
-			m[i%13] = i
-			wg.Done()
-		}()
-	}
+	go func() {
+		for {
+			m["a"] += 1
+			time.Sleep(time.Nanosecond)
+		}
+	}()
 
-	wg.Wait()
+	go func() {
+		for {
+			_ = m["b"]
+			time.Sleep(time.Nanosecond)
+		}
+	}()
+	select {}
 }
