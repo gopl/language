@@ -12,9 +12,16 @@ func main() {
 	}
 	f := file{
 		name: "name",
+		attr: struct { // 再次定义匿名结构
+			owner int
+			perm  int
+		}{
+			1,
+			0755,
+		},
 	}
 
-	f.attr.owner = 1 // 无法直接初始化
+	f.attr.owner = 1 // 单独赋值
 	f.attr.perm = 0755
 
 	fmt.Println(f)
