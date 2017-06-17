@@ -9,7 +9,7 @@ func main() {
 
 	go func() {
 		for {
-			m["a"] += 1
+			m["a"]++
 			time.Sleep(time.Nanosecond)
 		}
 	}()
