@@ -28,6 +28,7 @@ func (*T) TPtr() {}
 
 func methodSet(a interface{}) {
 	t := reflect.TypeOf(a)
+	// 反射只能遍历导出方法
 	for i := 0; i < t.NumMethod(); i++ {
 		m := t.Method(i)
 		fmt.Println(m.Name, m.Type)
